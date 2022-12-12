@@ -3,7 +3,7 @@ package org.example.one;
 public enum Gender {
 
 
-    MALE("Muški"), FEMALE("Ženski");
+    MALE("M"), FEMALE("F");
 
     private String name;
 
