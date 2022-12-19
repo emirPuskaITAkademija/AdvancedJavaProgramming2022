@@ -17,7 +17,7 @@ public class PersonCsvReader {
     }
 
     public List<Person> readPersonList() {
-        List<Person> personList = new ArrayList<>();
+        ArrayList<Person> personList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();

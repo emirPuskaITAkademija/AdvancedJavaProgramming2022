@@ -13,7 +13,7 @@ public class ArrayDemo {
         //numbers[3] = 120;//
         System.out.println("DINAMICKI");
         //dynamicArray -> tipa DynamicArray, Iterable<Integer>
-        DynamicArray dynamicArray = new DynamicArray();
+        IntegerArray dynamicArray = new IntegerArray();
         dynamicArray.add(23);
         dynamicArray.add(24);
         dynamicArray.add(123);
@@ -23,7 +23,7 @@ public class ArrayDemo {
         }
 
 
-        DynamicArray dynamicArray2 = new DynamicArray();
+        IntegerArray dynamicArray2 = new IntegerArray();
         dynamicArray2.add(1000);
         dynamicArray2.add(2000);
         for(int number : dynamicArray2){
