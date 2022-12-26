@@ -1,20 +1,26 @@
-package org.example.three.homework;
+package org.example.four.generic;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Container<E> implements Iterable<E> {
+/**
+ * Simulirati dinamičke nizove
+ * <li>
+ *     1. add(E element)
+ *     2. removeAt(int index)
+ *     3. remove(E element)
+ *     4. iterator() -> Iterator -> private class
+ *
+ * </li>
+ */
+public class NumberContainer<E extends Number> implements Iterable<E> {
     private int capacity = 0;
-    private E[] elements = (E[]) new Object[capacity];
-
-    public Container() {
-        super();
-    }
+    private E[] numbers = (E[]) new Object[capacity];
 
     public void add(E element) {
         capacity++;
-        elements = Arrays.copyOf(elements, capacity);
-        elements[capacity - 1] = element;
+        numbers = Arrays.copyOf(numbers, capacity);
+        numbers[capacity - 1] = element;
     }
 
     public void removeAt(int index) {
@@ -22,16 +28,16 @@ public class Container<E> implements Iterable<E> {
             System.err.println("Index out of range..");
         } else {
             for (int i = index; i < capacity - 1; i++) {
-                elements[i] = elements[i + 1];
+                numbers[i] = numbers[i + 1];
             }
-            Arrays.copyOfRange(elements, 0, capacity - 1);
+            Arrays.copyOfRange(numbers, 0, capacity - 1);
             capacity--;
         }
     }
 
     public void remove(E element) {
-        for (int i = 0; i < elements.length; i++) {
-            if (elements[i].equals(element)) {
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i].equals(element)) {
                 removeAt(i);
                 break;
             }
@@ -40,10 +46,10 @@ public class Container<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new ElementIterator();
+        return new NumberIterator();
     }
 
-    private class ElementIterator implements Iterator<E> {
+    private class NumberIterator implements Iterator<E> {
         private int nextIndex = 0;
 
         @Override
@@ -54,7 +60,7 @@ public class Container<E> implements Iterable<E> {
 
         @Override
         public E next() {
-            E element = elements[nextIndex];
+            E element = numbers[nextIndex];
             nextIndex++;
             return element;
         }
