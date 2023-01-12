@@ -1,5 +1,6 @@
-package org.example.four.collection;
+package org.example.four.collection.customer;
 
+import org.example.four.collection.Dao;
 import org.example.three.jdbc.Customer;
 
 import java.sql.*;
