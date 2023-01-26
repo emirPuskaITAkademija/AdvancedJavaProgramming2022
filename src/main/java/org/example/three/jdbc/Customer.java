@@ -1,9 +1,10 @@
 package org.example.three.jdbc;
 
 import java.time.LocalDate;
+import java.time.Period;
 
-public class Customer {
-    private int customerId;
+public class Customer implements Comparable<Customer>{
+    private Integer customerId;
     private String firstName;
     private String lastName;
     private LocalDate birthdate;
@@ -17,11 +18,11 @@ public class Customer {
     public Customer() {
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -88,6 +89,12 @@ public class Customer {
         this.state = state;
     }
 
+    public Integer getAge(){
+        LocalDate now = LocalDate.now();
+        Period period = birthdate.until(now);
+        return period.getYears();
+    }
+
     public int getPoints() {
         return points;
     }
@@ -110,4 +117,36 @@ public class Customer {
                 ", points=" + points +
                 '}';
     }
+
+    public int compareByAge(Customer anotherCustomer){
+        return birthdate.compareTo(anotherCustomer.getBirthdate());
+    }
+
+    /**
+     *  Customer c1 = new Customer();
+     *  Customer c2 = new Customer();
+     *  int result = c1.compareTo(c2);
+     *  result -> 0      c1 je jednak c2
+     *  result -> -1     c1 je manji od c2
+     *  result -> 1      c1 veći od c2
+     * @param anotherCustomer the object to be compared.
+     * @return resultOfComparing
+     */
+    @Override
+    public int compareTo(Customer anotherCustomer) {
+        return customerId.compareTo(anotherCustomer.getCustomerId());
+    }
+
+    // OrderItem orderItem1 = new OrderItem() -> PK   order_id, product_id
+    // OrderItem orderItem2 = new OrderItem() -> PK   order_id, product_id
+    /**
+     * int result = orderItem1.compareTo(orderItem2);
+     *   {
+     *       int result = orderId.compareTo(anotherOrderItem.getOrderId());
+     *       if(result == 0){
+     *           result = productId.compareTo(anotherOrderItem.getProductId());
+     *       }
+     *       return result;
+     *   }
+     */
 }
