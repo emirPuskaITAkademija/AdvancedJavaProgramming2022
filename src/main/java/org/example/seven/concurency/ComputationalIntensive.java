@@ -14,6 +14,7 @@ public class ComputationalIntensive {
         System.out.println(sum);*/
         double sum = IntStream.range(0, MAX)
                 .sequential()
+                .parallel()
                // .parallel()
                 .mapToDouble(ComputationalIntensive::compute)
                 .reduce(0, (total, number)->total+number);
